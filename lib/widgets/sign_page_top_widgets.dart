@@ -5,7 +5,11 @@ Row siginPageTopWidgets(double screenWidth, TextStyle headingTxt,
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      Image.asset('assets/images/icons.png',width: 150,height: 150,),
+      Image.asset(
+        'assets/images/icons.png',
+        width: 150,
+        height: 150,
+      ),
       Container(
         width: screenWidth * 0.4,
         padding: const EdgeInsets.all(10.0),

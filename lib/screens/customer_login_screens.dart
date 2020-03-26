@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/sing_page_top_widgets.dart';
+import 'package:sambharapp/widgets/sign_page_top_widgets.dart';
 import '../widgets/input_feild_code_design.dart';
 
 class CustomerLoginScreens extends StatelessWidget {
@@ -65,6 +65,7 @@ class CustomerLoginScreens extends StatelessWidget {
       padding: EdgeInsets.all(5),
       decoration: textfeildDecoration,
       child: TextField(
+        cursorColor: Theme.of(context).accentColor,
         decoration: innerInputFeildDecoration(context, 'Username'),
       ),
     );
@@ -76,6 +77,7 @@ class CustomerLoginScreens extends StatelessWidget {
       padding: EdgeInsets.all(5),
       decoration: textfeildDecoration,
       child: TextField(
+        cursorColor: Theme.of(context).accentColor,
         decoration: innerInputFeildDecoration(context, 'Password'),
       ),
     );
