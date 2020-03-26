@@ -3,9 +3,18 @@ import '../widgets/sing_page_top_widgets.dart';
 import '../widgets/input_feild_code_design.dart';
 
 class CustomerLoginScreens extends StatelessWidget {
-  
   final _formKey = GlobalKey<FormState>();
+  var _mobNumber = TextEditingController();
+  var _passFeild = TextEditingController();
+  final _passFeildNode = FocusNode();
+  final _mobNubNode = FocusNode();
 
+  _fieldFocusChange(
+        BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
+      currentFocus.unfocus();
+      FocusScope.of(context).requestFocus(nextFocus);
+    }
+    
   TextStyle headingTxt =
       TextStyle(color: const Color.fromRGBO(94, 191, 70, 1), fontSize: 26);
 
@@ -13,6 +22,8 @@ class CustomerLoginScreens extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+
+  
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -24,7 +35,19 @@ class CustomerLoginScreens extends StatelessWidget {
             // this is the top text in the login screen last 2 para means the 1st text and 2nd text
             siginPageTopWidgets(screenWidth, headingTxt, 'Consumer', 'Login'),
             const SizedBox(
-              height: 100,
+              height: 80,
+            ),
+            Container(
+              width: screenWidth * 0.6,
+              child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    'Please enter your details to Signup',
+                    style: TextStyle(color: Theme.of(context).accentColor),
+                  )),
+            ),
+            SizedBox(
+              height: 20,
             ),
             Form(
                 key: _formKey,
@@ -36,19 +59,31 @@ class CustomerLoginScreens extends StatelessWidget {
                         margin: EdgeInsets.symmetric(vertical: 10),
                         padding: EdgeInsets.all(5),
                         decoration: textfeildDecoration,
-                        child: TextField(
-                          decoration:
-                              innerInputFeildDecoration(context, 'Username'),
-                        ),
+                        child: TextFormField(
+                            decoration: innerInputFeildDecoration(
+                                context, 'Mobile Number'),
+                            textInputAction: TextInputAction.next,
+                            keyboardType: TextInputType.number,
+                            controller: _mobNumber,
+                            focusNode: _mobNubNode,
+                            onFieldSubmitted: (_) {
+                              _fieldFocusChange(
+                                  context, _mobNubNode, _passFeildNode);
+                            }),
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         padding: EdgeInsets.all(5),
                         decoration: textfeildDecoration,
-                        child: TextField(
-                          decoration:
-                              innerInputFeildDecoration(context, 'Password'),
-                        ),
+                        child: TextFormField(
+                            decoration:
+                                innerInputFeildDecoration(context, 'Password'),
+                            textInputAction: TextInputAction.done,
+                            controller: _passFeild,
+                            focusNode: _passFeildNode,
+                            onFieldSubmitted: (val) {
+                              print(val);
+                            }),
                       ),
                       SizedBox(
                         height: 20,
