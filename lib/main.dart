@@ -21,6 +21,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           theme: mainThemes(),
           // use this page for sign up => ConsumerSignUp(),
+          routes: {
+            TemporaryScreen.routeName: (ctx) => TemporaryScreen(),
+          },
           home: Consumer<FirebaseLogin>(
             builder: (context, firebaseprovider, child) {
               if (firebaseprovider.loginStatus == LoginStatus.LoggedIn)

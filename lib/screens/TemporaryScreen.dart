@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sambharapp/provider/firebase_consumer_login.dart';
 
 class TemporaryScreen extends StatelessWidget {
+  static const routeName = '/TemporaryScreen';
   @override
   Widget build(BuildContext context) {
     final _firebaseProvider = Provider.of<FirebaseLogin>(context);

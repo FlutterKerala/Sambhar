@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sambharapp/provider/firebase_consumer_login.dart';
+import 'package:sambharapp/screens/TemporaryScreen.dart';
 import 'package:sambharapp/widgets/sign_page_top_widgets.dart';
 import '../widgets/input_feild_code_design.dart';
 import '../core/firebase_Mob_Auth.dart';
@@ -52,7 +53,7 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
 
     if (userInDataBase) {
       print('in');
-      // enter the code for redirecting to home page
+      Navigator.of(context).pushReplacementNamed(TemporaryScreen.routeName);
     } else {
       print('out');
       _scaffoldKey.currentState.showSnackBar(SnackBar(
