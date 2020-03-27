@@ -172,7 +172,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
             return null;
         },
         cursorColor: Theme.of(context).accentColor,
-        onSaved: (value) => model.name = value,
+        onSaved: (value) => model.name = value.trim(),
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: 'Name',
@@ -203,7 +203,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
           else
             return null;
         },
-        onSaved: (value) => model.phone = value,
+        onSaved: (value) => model.phone = value.trim(),
         keyboardType: TextInputType.phone,
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -321,7 +321,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
           else
             return null;
         },
-        onSaved: (value) => model.pincode = value,
+        onSaved: (value) => model.pincode = value.trim(),
         keyboardType: TextInputType.number,
         cursorColor: Theme.of(context).accentColor,
         decoration: InputDecoration(
@@ -354,7 +354,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
           else
             return null;
         },
-        onSaved: (value) => model.address = value,
+        onSaved: (value) => model.address = value.trim(),
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: 'Address',
@@ -410,6 +410,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
       });
     } else
       print("Not success");
+      scheduleRebuild();
   }
 
   void scheduleRebuild() {

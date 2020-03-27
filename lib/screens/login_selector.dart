@@ -13,11 +13,12 @@ class LoginSelector extends StatelessWidget {
         child: Scaffold(
             appBar: PreferredSize(
                 child: AppBar(
-                  backgroundColor: Colors.transparent,
+                  backgroundColor: Colors.red,
                   elevation: 0,
                   flexibleSpace: Image(
                     image: AssetImage('assets/images/sambhar-bg.png'),
                     fit: BoxFit.cover,
+                    height: double.infinity,
                   ),
                   bottom: TabBar(
                     labelStyle: TextStyle(fontWeight: FontWeight.w700),

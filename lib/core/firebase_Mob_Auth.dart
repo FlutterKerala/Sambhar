@@ -49,35 +49,35 @@ class FirebaseMobAuth {
                   ),
                   actions: <Widget>[
                     FlatButton(
-                        onPressed: () async {
-                          final code = _codeController.text.trim();
-                          AuthResult result;
-                          try {
-                            AuthCredential credential =
-                                PhoneAuthProvider.getCredential(
-                                    verificationId: verificationId,
-                                    smsCode: code);
+                      onPressed: () async {
+                        final code = _codeController.text.trim();
+                        AuthResult result;
+                        try {
+                          AuthCredential credential =
+                              PhoneAuthProvider.getCredential(
+                                  verificationId: verificationId,
+                                  smsCode: code);
 
-                            result =
-                                await _auth.signInWithCredential(credential);
-                          } catch (e) {
-                            // print('catch error');
-                            submitProcess(false, false);
-                            // print(e);
-                            return;
-                          }
+                          result = await _auth.signInWithCredential(credential);
+                        } catch (e) {
+                          // print('catch error');
+                          submitProcess(false, false);
+                          // print(e);
+                          return;
+                        }
 
-                          FirebaseUser user = result.user;
-                          if (user != null) {
-                            print(
-                                'verification is done automatically and sucess');
-                            submitProcess(true, false);
-                          } else {
-                            print('error');
-                            submitProcess(false, false);
-                          }
-                        },
-                        child: Text('Confirm'))
+                        FirebaseUser user = result.user;
+                        if (user != null) {
+                          print(
+                              'verification is done automatically and sucess');
+                          submitProcess(true, false);
+                        } else {
+                          print('error');
+                          submitProcess(false, false);
+                        }
+                      },
+                      child: Text('Confirm'),
+                    )
                   ],
                 );
               });

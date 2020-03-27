@@ -29,7 +29,7 @@ InputDecoration innerInputFeildDecoration(
             padding: const EdgeInsets.all(8.0),
             child: Text("+91"),
           )
-        : "",
+        : SizedBox(),
     errorText: _validate,
     contentPadding: EdgeInsets.only(left: 10),
     hintStyle: TextStyle(fontSize: 20.0, color: Theme.of(context).accentColor),
