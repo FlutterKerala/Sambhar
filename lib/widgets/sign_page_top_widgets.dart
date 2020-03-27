@@ -5,7 +5,11 @@ Row siginPageTopWidgets(double screenWidth, TextStyle headingTxt,
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      Image.asset('assets/images/icons.png'),
+      Image.asset(
+        'assets/images/icons.png',
+        width: 150,
+        height: 150,
+      ),
       Container(
         width: screenWidth * 0.4,
         padding: const EdgeInsets.all(10.0),
@@ -13,19 +17,13 @@ Row siginPageTopWidgets(double screenWidth, TextStyle headingTxt,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                firstTxt,
-                style: headingTxt,
-              ),
+            Text(
+              firstTxt,
+              style: headingTxt,
             ),
-            FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                secoundTxt,
-                style: headingTxt,
-              ),
+            Text(
+              secoundTxt,
+              style: headingTxt,
             )
           ],
         ),

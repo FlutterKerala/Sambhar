@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 ThemeData mainThemes() {
   return ThemeData(
-      primaryColor: Colors.white,
       accentColor: Color(0xFF5EBF46),
       cursorColor: Colors.white,
       textTheme: TextTheme(
@@ -16,4 +15,3 @@ ThemeData mainThemes() {
 
 TextStyle fontFamily(FontWeight fontWeight) =>
     TextStyle(fontFamily: "Inter", fontWeight: fontWeight);
-  
