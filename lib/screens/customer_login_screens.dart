@@ -89,24 +89,25 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
               height: 20,
             ),
             Form(
-                key: _formKey,
-                child: Container(
-                  width: screenWidth * 0.7,
-                  child: Column(
-                    children: <Widget>[
-                      infoText(context),
-                      phoneNoTextField(context),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      _isLoading
-                          ? Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : signupRaisedButton(screenWidth, context)
-                    ],
-                  ),
-                )),
+              key: _formKey,
+              child: Container(
+                width: screenWidth * 0.7,
+                child: Column(
+                  children: <Widget>[
+                    infoText(context),
+                    phoneNoTextField(context),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    _isLoading
+                        ? Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : signupRaisedButton(screenWidth, context),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
