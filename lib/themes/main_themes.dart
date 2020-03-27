@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 ThemeData mainThemes() {
   return ThemeData(
-      primaryColor: Colors.white,
       accentColor: Color(0xFF5EBF46),
       indicatorColor: Color(0xda158213),
       cursorColor: Colors.white,
