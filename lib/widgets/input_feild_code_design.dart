@@ -24,6 +24,12 @@ InputDecoration innerInputFeildDecoration(
   return InputDecoration(
     border: InputBorder.none,
     hintText: placeholder,
+    prefix: placeholder.contains("Phone")
+        ? Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("+91"),
+          )
+        : "",
     errorText: _validate,
     contentPadding: EdgeInsets.only(left: 10),
     hintStyle: TextStyle(fontSize: 20.0, color: Theme.of(context).accentColor),

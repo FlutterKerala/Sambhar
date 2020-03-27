@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:sambharapp/provider/firebase_consumer_login.dart';
 import 'package:sambharapp/widgets/sign_page_top_widgets.dart';
 import '../widgets/input_feild_code_design.dart';
 import '../core/firebase_Mob_Auth.dart';
 
-class CustomerLoginScreens extends StatefulWidget {
+class SellerLoginScreens extends StatefulWidget {
   @override
-  _CustomerLoginScreensState createState() => _CustomerLoginScreensState();
+  _SellerLoginScreensState createState() => _SellerLoginScreensState();
 }
 
-class _CustomerLoginScreensState extends State<CustomerLoginScreens>
+class _SellerLoginScreensState extends State<SellerLoginScreens>
     with FirebaseMobAuth {
   // FirebaseMobAuth is an inherite class to do firebase auth
   final _formKey = GlobalKey<FormState>();
@@ -20,7 +18,7 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
 
   final TextStyle headingTxt = TextStyle(
       color: const Color.fromRGBO(94, 191, 70, 1),
-      fontSize: 26,
+      fontSize: 30,
       fontWeight: FontWeight.w700);
 
   bool _isLoading = false;
@@ -29,7 +27,7 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
 
   String _validate;
 
-  Future<void> submitProcess(bool val, bool auto) async {
+  void submitProcess(bool val, bool auto) {
     if (!auto) {
       Navigator.of(context).pop();
     }
@@ -38,28 +36,9 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
         content: Text('Sigin failed'),
         duration: Duration(seconds: 3),
       ));
-      setState(() {
-        _isLoading = false;
-      });
-      return;
     }
 
     // enter the validation for account checking through database and more in here
-
-    bool userInDataBase =
-        await Provider.of<FirebaseLogin>(context, listen: false)
-            .userLoginData(_mobNumber);
-
-    if (userInDataBase) {
-      print('in');
-      // enter the code for redirecting to home page
-    } else {
-      print('out');
-      _scaffoldKey.currentState.showSnackBar(SnackBar(
-        content: Text('Your are not a member Please Sigin'),
-        duration: Duration(seconds: 3),
-      ));
-    }
 
     setState(() {
       _isLoading = false;
@@ -80,7 +59,7 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
               height: screenHeight * 0.15,
             ),
             // this is the top text in the login screen last 2 para means the 1st text and 2nd text
-            siginPageTopWidgets(screenWidth, headingTxt, 'Consumer', 'Login'),
+            siginPageTopWidgets(screenWidth, headingTxt, 'Seller', 'Login'),
             const SizedBox(
               height: 100,
             ),
