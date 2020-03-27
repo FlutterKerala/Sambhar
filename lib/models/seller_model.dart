@@ -1,5 +1,5 @@
 class SellerModel {
-  String name, phone, gender, address, shopname, gstid, pincode, type;
+  String name, phone, gender, address, shopname, shoploc, gstid, pincode, type;
   DateTime dob;
 
   SellerModel();
@@ -11,7 +11,9 @@ class SellerModel {
         address = json['address'],
         pincode = json['pincode'],
         dob = json['dob'],
+        shopname = json['shopname'],
         gstid = json['gstid'],
+        shoploc = json["shoplocation"],
         type = "seller";
 
   Map<String, dynamic> toJson() => {
@@ -21,7 +23,9 @@ class SellerModel {
         'address': address,
         'pincode': pincode,
         'dob': dob,
+        'shopname': shopname,
         'gstid': gstid,
+        'shoplocation': shoploc,
         'type': "seller"
       };
 }
