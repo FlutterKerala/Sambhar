@@ -19,6 +19,7 @@ class _SellerSignUpState extends State<SellerSignUp> {
 
   SellerModel model;
   double screenWidth;
+
   BoxDecoration textfeildDecoration = BoxDecoration(
     color: const Color.fromRGBO(232, 238, 243, 1),
     borderRadius: new BorderRadius.all(
@@ -37,7 +38,6 @@ class _SellerSignUpState extends State<SellerSignUp> {
       ),
     ],
   );
-
 
   DateTime _dateTime;
   String _dateValue;
@@ -325,8 +325,14 @@ class _SellerSignUpState extends State<SellerSignUp> {
     );
   }
 
-  _navToAddShop() async {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => AddShop()));
+  _navToAddShop() {
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => AddShop(sellerModel: model)),
+      );
+    }
   }
 
   void scheduleRebuild() {

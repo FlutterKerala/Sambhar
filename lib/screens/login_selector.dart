@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:sambharapp/screens/consumer_signup.dart';
 import 'package:sambharapp/screens/customer_login_screens.dart';
@@ -8,33 +10,72 @@ class LoginSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double mqh = MediaQuery.of(context).size.height;
-    return SafeArea(
-      child: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-            appBar: PreferredSize(
-                child: AppBar(
-                  backgroundColor: Colors.red,
-                  elevation: 0,
-                  flexibleSpace: Image(
-                    image: AssetImage('assets/images/sambhar-bg.png'),
-                    fit: BoxFit.cover,
-                    height: double.infinity,
+    return WillPopScope(
+      onWillPop: () async {
+        return (_backButtonFunction(context)) ?? false;
+      },
+      child: SafeArea(
+        child: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+              appBar: PreferredSize(
+                  child: AppBar(
+                    backgroundColor: Colors.red,
+                    elevation: 0,
+                    flexibleSpace: Image(
+                      image: AssetImage('assets/images/sambhar-bg.png'),
+                      fit: BoxFit.cover,
+                      height: double.infinity,
+                    ),
+                    bottom: TabBar(
+                      labelStyle: TextStyle(fontWeight: FontWeight.w700),
+                      tabs: [tab("Sign In"), tab("Sign Up")],
+                    ),
                   ),
-                  bottom: TabBar(
-                    labelStyle: TextStyle(fontWeight: FontWeight.w700),
-                    tabs: [tab("Sign In"), tab("Sign Up")],
-                  ),
-                ),
-                preferredSize: Size.fromHeight(mqh * 0.3)),
-            body: TabBarView(
-              children: <Widget>[
-                signInTab(mqh, context),
-                signUpTab(mqh, context),
-              ],
-            )),
+                  preferredSize: Size.fromHeight(mqh * 0.3)),
+              body: TabBarView(
+                children: <Widget>[
+                  signInTab(mqh, context),
+                  signUpTab(mqh, context),
+                ],
+              )),
+        ),
       ),
     );
+  }
+
+  Future<bool> _backButtonFunction(context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.white,
+            title: Text(
+              "Are you sure?",
+              style: TextStyle(color: Color(0xFF5EBF46)),
+            ),
+            content: Text(
+              "Do you want to exit?",
+              style: TextStyle(color: Color(0xFF5EBF46)),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () => exit(0),
+                child: Text(
+                  "Yes",
+                  style: TextStyle(color: Color(0xFF5EBF46)),
+                ),
+              ),
+              FlatButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(
+                  "No",
+                  style: TextStyle(color: Color(0xFF5EBF46)),
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   Tab tab(lbl) => Tab(

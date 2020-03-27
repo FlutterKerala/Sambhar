@@ -24,11 +24,11 @@ class FirebaseLogin with ChangeNotifier {
     });
   }
 
-  Future<bool> userLoginData(String phone) async {
+  Future<bool> userLoginData(String phone, String collection) async {
     String temp = phone.substring(3, phone.length);
     print('number $temp');
     var fireBaseQuery = Firestore.instance
-        .collection('Consumer')
+        .collection(collection)
         .where("phone", isEqualTo: temp);
 
     QuerySnapshot eventsQuery = await fireBaseQuery.getDocuments();

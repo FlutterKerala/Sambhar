@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sambharapp/models/consumer_model.dart';
 import 'package:sambharapp/models/seller_model.dart';
+import 'package:sambharapp/screens/login_selector.dart';
 import 'package:sambharapp/widgets/sign_page_top_widgets.dart';
 
 class AddShop extends StatefulWidget {
+  SellerModel sellerModel;
+
+  AddShop({this.sellerModel});
+
   @override
   _AddShopState createState() => _AddShopState();
 }
@@ -18,6 +22,9 @@ class _AddShopState extends State<AddShop> {
 
   SellerModel model;
   double screenWidth;
+
+  Firestore _reference;
+
   BoxDecoration textfeildDecoration = BoxDecoration(
     color: const Color.fromRGBO(232, 238, 243, 1),
     borderRadius: new BorderRadius.all(
@@ -38,6 +45,7 @@ class _AddShopState extends State<AddShop> {
   );
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController _shopnameController,
       _shopLocController,
       _pincodeController,
@@ -46,6 +54,7 @@ class _AddShopState extends State<AddShop> {
   @override
   void initState() {
     super.initState();
+    _reference = Firestore.instance;
     model = SellerModel();
     _shopnameController = TextEditingController();
     _shopLocController = TextEditingController();
@@ -210,16 +219,25 @@ class _AddShopState extends State<AddShop> {
   _signUp() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      Firestore.instance
-          .collection('Consumer')
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+        duration: Duration(minutes: 5),
+        content: Text("Registering .. Please wait"),
+      ));
+      await _reference.collection('Seller').document().setData(model.toJson());
+      await _reference
+          .collection('Seller')
+          .document(widget.sellerModel.pincode)
+          .collection(widget.sellerModel.gstid.toString())
           .document()
-          .setData(model.toJson())
-          .then((snapshot) {
-        _shopnameController.clear();
-        _shopLocController.clear();
-        _pincodeController.clear();
-        _gstidController.clear();
-      });
+          .setData({'We have': 'to set Categories'}).then(
+        (value) {
+          _scaffoldKey.currentState.hideCurrentSnackBar();
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => LoginSelector()),
+          );
+        },
+      );
     } else
       print("Not success");
   }
@@ -242,8 +260,9 @@ class _AddShopState extends State<AddShop> {
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      key: _scaffoldKey,
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: ScrollPhysics(),
         child: Padding(
           padding: MediaQuery.of(context).padding,
           child: Container(
@@ -258,14 +277,19 @@ class _AddShopState extends State<AddShop> {
                 siginPageTopWidgets(screenWidth, headingTxt, "Add", "Shop"),
                 Form(
                   key: _formKey,
-                  child: Column(
+                  child: Stack(
+                    alignment: Alignment.center,
                     children: <Widget>[
-                      infoText(context),
-                      _shopnameTextField(),
-                      _shopLocTextField(),
-                      _pinCodeTextField(),
-                      _gstidTextField(),
-                      _signUpButton(),
+                      Column(
+                        children: <Widget>[
+                          infoText(context),
+                          _shopnameTextField(),
+                          _shopLocTextField(),
+                          _pinCodeTextField(),
+                          _gstidTextField(),
+                          _signUpButton(),
+                        ],
+                      ),
                     ],
                   ),
                 ),
