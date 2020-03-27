@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1081530155004",
+    "firebase_url": "https://sambhar-68ab7.firebaseio.com",
+    "project_id": "sambhar-68ab7",
+    "storage_bucket": "sambhar-68ab7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081530155004:android:997f8e77f6b1fa31a63c79",
+        "android_client_info": {
+          "package_name": "com.example.sambharapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081530155004-fvm8nm4d7p1u9j486psh78oqiuacilp8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHMuV0-MfU0fuyzBU5nefyD8jFsIaB4A8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081530155004-fvm8nm4d7p1u9j486psh78oqiuacilp8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
