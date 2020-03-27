@@ -1,31 +1,34 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../widgets/sing_page_top_widgets.dart';
 import '../widgets/input_feild_code_design.dart';
+import '../core/firebase_Mob_Auth.dart';
 
 class CustomerLoginScreens extends StatefulWidget {
   @override
   _CustomerLoginScreensState createState() => _CustomerLoginScreensState();
 }
 
-class _CustomerLoginScreensState extends State<CustomerLoginScreens> {
+class _CustomerLoginScreensState extends State<CustomerLoginScreens> with FirebaseMobAuth {
+
+  // firebase mobile auth is a Class that can be used in  mob auth and can acess by inherte method
+
   final _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   String _mobNumber;
-
-  final _codeController = TextEditingController();
 
   TextStyle headingTxt =
       TextStyle(color: const Color.fromRGBO(94, 191, 70, 1), fontSize: 26);
 
   bool _isLoading = false;
 
-// this functions is called after the mobile varification are ended in this 
+// this functions is called after the mobile varification are ended in this
 // notifications are given and data are check with dataBase
 
-  void submitProcess(bool val) {
-    Navigator.of(context).pop();
+  void submitProcess(bool val, bool auto) {
+    if (!auto) {
+        Navigator.of(context).pop();
+    }
     if (!val) {
       _scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text('Sigin failed'),
@@ -112,7 +115,8 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens> {
                                   });
                                   _mobNumber = '+91$_mobNumber';
                                   // this is where the the firebase mob auth functionis called
-                                  loginUser(_mobNumber, context);
+                                  // This was connected to this class by inherite method 
+                                  loginUser(_mobNumber, context, submitProcess);
                                 }
                               },
                               child: Container(
@@ -142,83 +146,5 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens> {
       ),
     );
   }
-// firbase mobile auth Functions
-  Future<bool> loginUser(String phone, BuildContext context) async {
-    FirebaseAuth _auth = FirebaseAuth.instance;
 
-    _auth.verifyPhoneNumber(
-        phoneNumber: phone,
-        timeout: Duration(seconds: 120),
-        verificationCompleted: (AuthCredential credential) async {
-          AuthResult result = await _auth.signInWithCredential(credential);
-          FirebaseUser user = result.user;
-
-          if (user != null) {
-            print('verification is done automatically and sucess');
-            submitProcess(true);
-          } else {
-            print('error');
-            submitProcess(false);
-          }
-        },
-        verificationFailed: (AuthException exception) {
-          print(exception.message);
-          submitProcess(false);
-        },
-        codeSent: (String verificationId, [int forceResendingToken]) {
-          // this is where the sms are check manually
-          showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (context) {
-                return AlertDialog(
-                  title: Text('Enter your Code'),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      TextField(
-                        decoration:
-                            innerInputFeildDecoration(context, 'SMS CODE'),
-                        keyboardType: TextInputType.number,
-                        controller: _codeController,
-                      )
-                    ],
-                  ),
-                  actions: <Widget>[
-                    FlatButton(
-                        onPressed: () async {
-                          final code = _codeController.text.trim();
-                          AuthResult result;
-                          try {
-                            AuthCredential credential =
-                                PhoneAuthProvider.getCredential(
-                                    verificationId: verificationId,
-                                    smsCode: code);
-
-                            result =
-                                await _auth.signInWithCredential(credential);
-                          } catch (e) {
-                            // print('catch error');
-                            submitProcess(false);
-                            // print(e);
-                            return;
-                          }
-
-                          FirebaseUser user = result.user;
-                          if (user != null) {
-                            print(
-                                'verification is done automatically and sucess');
-                            submitProcess(true);
-                          } else {
-                            print('error');
-                            submitProcess(false);
-                          }
-                        },
-                        child: Text('Conform'))
-                  ],
-                );
-              });
-        },
-        codeAutoRetrievalTimeout: null);
-  }
 }
