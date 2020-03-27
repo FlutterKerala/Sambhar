@@ -50,6 +50,7 @@ flutter:
   assets:
     - assets/images/icons.png
     - assets/images/sambhar-bg.png
+    - assets/images/shop.png
 
   #  - images/a_dot_ham.jpeg
 

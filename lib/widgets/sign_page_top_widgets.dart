@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 Row siginPageTopWidgets(double screenWidth, TextStyle headingTxt,
-    String firstTxt, String secoundTxt) {
+    String firstTxt, String secondTxt) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       Image.asset(
-        'assets/images/icons.png',
+        secondTxt.contains("Shop")
+            ? 'assets/images/shop.png'
+            : 'assets/images/icons.png',
         width: 140,
         height: 140,
       ),
@@ -22,7 +24,7 @@ Row siginPageTopWidgets(double screenWidth, TextStyle headingTxt,
               style: headingTxt,
             ),
             Text(
-              secoundTxt,
+              secondTxt,
               style: headingTxt,
             )
           ],
