@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sambharapp/provider/firebase_consumer_login.dart';
 import 'package:sambharapp/widgets/sign_page_top_widgets.dart';
 import '../widgets/input_feild_code_design.dart';
 import '../core/firebase_Mob_Auth.dart';
+import 'TemporaryScreen.dart';
 
 class SellerLoginScreens extends StatefulWidget {
   @override
@@ -27,7 +30,7 @@ class _SellerLoginScreensState extends State<SellerLoginScreens>
 
   String _validate;
 
-  void submitProcess(bool val, bool auto) {
+  Future<void> submitProcess(bool val, bool auto)  async {
     if (!auto) {
       Navigator.of(context).pop();
     }
@@ -38,7 +41,24 @@ class _SellerLoginScreensState extends State<SellerLoginScreens>
       ));
     }
 
+
     // enter the validation for account checking through database and more in here
+
+     bool userInDataBase =
+        await Provider.of<FirebaseLogin>(context, listen: false)
+            .userLoginData(_mobNumber, 'seller');
+
+    if (userInDataBase) {
+      print('in');
+      Navigator.of(context).pushReplacementNamed(TemporaryScreen.routeName);
+    } else {
+      print('out');
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+        content: Text('Your are not a member Please Sigin'),
+        duration: Duration(seconds: 3),
+      ));
+    }
+
 
     setState(() {
       _isLoading = false;
