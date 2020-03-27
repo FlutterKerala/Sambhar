@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sambharapp/models/consumer_model.dart';
+import 'package:sambharapp/widgets/sign_page_top_widgets.dart';
 
 class ConsumerSignUp extends StatefulWidget {
   @override
@@ -45,8 +46,10 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
     ],
   );
 
-  TextStyle headingTxt =
-      TextStyle(color: const Color.fromRGBO(94, 191, 70, 1), fontSize: 26);
+  TextStyle headingTxt = TextStyle(
+      color: const Color.fromRGBO(94, 191, 70, 1),
+      fontSize: 25,
+      fontWeight: FontWeight.w700);
 
   TextStyle _logoHeader = TextStyle(
     color: Colors.green,
@@ -93,7 +96,8 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                _headerRow(),
+                siginPageTopWidgets(
+                    screenWidth, headingTxt, "Consumer", "Signup"),
                 Form(
                   key: _formKey,
                   child: Column(
@@ -124,7 +128,8 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
           children: <Widget>[
             Image.asset(
               'assets/images/icons.png',
-              scale: 1.5,
+              height: 150,
+              width: 150,
             ),
             Text(
               'Consumer\nSignup',
@@ -166,6 +171,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
           else
             return null;
         },
+        cursorColor: Theme.of(context).accentColor,
         onSaved: (value) => model.name = value,
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -189,6 +195,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
       ),
       decoration: textfeildDecoration,
       child: TextFormField(
+        cursorColor: Theme.of(context).accentColor,
         controller: _phoneController,
         validator: (value) {
           if (value.isEmpty || value.trim().isEmpty)
@@ -316,6 +323,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
         },
         onSaved: (value) => model.pincode = value,
         keyboardType: TextInputType.number,
+        cursorColor: Theme.of(context).accentColor,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: 'Pin code',
@@ -338,6 +346,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
       ),
       decoration: textfeildDecoration,
       child: TextFormField(
+        cursorColor: Theme.of(context).accentColor,
         controller: _addressController,
         validator: (value) {
           if (value.isEmpty)
