@@ -1,5 +1,5 @@
 class ConsumerModel {
-  String name, phone, gender, address, pincode;
+  String name, phone, gender, address, pincode, type;
   DateTime dob;
 
   ConsumerModel();
@@ -10,7 +10,8 @@ class ConsumerModel {
         gender = json['gender'],
         address = json['address'],
         pincode = json['pincode'],
-        dob = json['dob'];
+        dob = json['dob'],
+        type = "consumer";
 
   Map<String, dynamic> toJson() => {
         'name': name,
@@ -19,5 +20,6 @@ class ConsumerModel {
         'address': address,
         'pincode': pincode,
         'dob': dob,
+        'type': "consumer"
       };
 }
