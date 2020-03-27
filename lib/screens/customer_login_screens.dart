@@ -106,6 +106,7 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.all(5),
+      height: 50,
       decoration: textfeildDecoration,
       child: TextField(
         controller: _phoneNumberFeild,
