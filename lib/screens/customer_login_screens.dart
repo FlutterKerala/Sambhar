@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
-import '../widgets/sing_page_top_widgets.dart';
+import 'package:sambharapp/widgets/sign_page_top_widgets.dart';
 import '../widgets/input_feild_code_design.dart';
 import '../core/firebase_Mob_Auth.dart';
 
-class CustomerLoginScreens extends StatefulWidget {
-  @override
-  _CustomerLoginScreensState createState() => _CustomerLoginScreensState();
-}
-
-class _CustomerLoginScreensState extends State<CustomerLoginScreens> with FirebaseMobAuth {
-
-  // firebase mobile auth is a Class that can be used in  mob auth and can acess by inherte method
-
+class CustomerLoginScreens extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   String _mobNumber;
 
-  TextStyle headingTxt =
-      TextStyle(color: const Color.fromRGBO(94, 191, 70, 1), fontSize: 26);
+  final TextStyle headingTxt = TextStyle(
+      color: const Color.fromRGBO(94, 191, 70, 1),
+      fontSize: 26,
+      fontWeight: FontWeight.w700);
 
   bool _isLoading = false;
 
@@ -27,7 +21,7 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens> with Fireba
 
   void submitProcess(bool val, bool auto) {
     if (!auto) {
-        Navigator.of(context).pop();
+      //    Navigator.of(context).pop();
     }
     if (!val) {
       _scaffoldKey.currentState.showSnackBar(SnackBar(
@@ -38,9 +32,9 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens> with Fireba
 
     // enter the validation for account checking through database and more in here
 
-    setState(() {
-      _isLoading = false;
-    });
+    ///  setState(() {
+    //   _isLoading = false;
+    // });
   }
 
   @override
@@ -61,15 +55,7 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens> with Fireba
             const SizedBox(
               height: 100,
             ),
-            Container(
-              width: screenWidth * 0.6,
-              child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Text(
-                    'Please enter your details to Signup',
-                    style: TextStyle(color: Theme.of(context).accentColor),
-                  )),
-            ),
+
             SizedBox(
               height: 20,
             ),
@@ -79,65 +65,13 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens> with Fireba
                   width: screenWidth * 0.7,
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 10),
-                        padding: EdgeInsets.all(5),
-                        decoration: textfeildDecoration,
-                        child: TextFormField(
-                            decoration: innerInputFeildDecoration(
-                                context, 'Mobile Number'),
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.number,
-                            validator: (val) {
-                              if (val.length > 10 || val.length < 10) {
-                                return 'enter valid mobile number';
-                              }
-
-                              if (val == '') {
-                                return 'enter your Mobile number';
-                              }
-                              _mobNumber = val;
-                            }),
-                      ),
+                      infoText(context),
+                      nameTextField(context),
+                      phoneNoTextField(context),
                       SizedBox(
                         height: 20,
                       ),
-                      _isLoading
-                          ? Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : FlatButton(
-                              onPressed: () {
-                                _formKey.currentState.validate();
-                                if (_mobNumber != null) {
-                                  setState(() {
-                                    _isLoading = true;
-                                  });
-                                  _mobNumber = '+91$_mobNumber';
-                                  // this is where the the firebase mob auth functionis called
-                                  // This was connected to this class by inherite method 
-                                  loginUser(_mobNumber, context, submitProcess);
-                                }
-                              },
-                              child: Container(
-                                  width: screenWidth * 0.7,
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 30),
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context).accentColor,
-                                      borderRadius: BorderRadius.all(
-                                        const Radius.circular(5.0),
-                                      )),
-                                  child: FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: Text(
-                                      'Sign up as a Seller',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 20),
-                                    ),
-                                  )))
+                      signupRaisedButton(screenWidth, context)
                     ],
                   ),
                 )),
@@ -147,4 +81,60 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens> with Fireba
     );
   }
 
+  Text infoText(BuildContext context) {
+    return Text(
+      "Please enter your details to sign in",
+      style: TextStyle(
+          color: Theme.of(context).accentColor,
+          fontWeight: FontWeight.w500,
+          fontSize: 17),
+    );
+  }
+
+  Container nameTextField(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.all(5),
+      decoration: textfeildDecoration,
+      child: TextField(
+        cursorColor: Theme.of(context).accentColor,
+        decoration: innerInputFeildDecoration(context, 'Username'),
+      ),
+    );
+  }
+
+  Container phoneNoTextField(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.all(5),
+      decoration: textfeildDecoration,
+      child: TextField(
+        cursorColor: Theme.of(context).accentColor,
+        decoration: innerInputFeildDecoration(context, 'Password'),
+      ),
+    );
+  }
+
+  Padding signupRaisedButton(double screenWidth, BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 15),
+      child: SizedBox(
+        width: double.infinity,
+        child: RaisedButton(
+          color: Theme.of(context).accentColor,
+          elevation: 5,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(4))),
+          onPressed: () {},
+          padding: EdgeInsets.only(top: 10, bottom: 10),
+          child: Text(
+            'Sign in',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.white, fontSize: 25, fontWeight: FontWeight.w500),
+          ),
+        ),
+      ),
+    );
+  }
 }
