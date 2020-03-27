@@ -19,7 +19,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           theme: mainThemes(),
           // use this page for sign up => ConsumerSignUp(),
-          home: LoginSelector()),
+          home: //LoginSelector()
+          CustomerLoginScreens()
+          ),
     );
   }
 }
