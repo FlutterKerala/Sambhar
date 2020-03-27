@@ -3,10 +3,17 @@ import 'package:sambharapp/widgets/sign_page_top_widgets.dart';
 import '../widgets/input_feild_code_design.dart';
 import '../core/firebase_Mob_Auth.dart';
 
-class CustomerLoginScreens extends StatelessWidget {
-  final _formKey = GlobalKey<FormState>();
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+class CustomerLoginScreens extends StatefulWidget {
+  @override
+  _CustomerLoginScreensState createState() => _CustomerLoginScreensState();
+}
 
+class _CustomerLoginScreensState extends State<CustomerLoginScreens>
+    with FirebaseMobAuth {
+      // FirebaseMobAuth is an inherite class to do firebase auth
+  final _formKey = GlobalKey<FormState>();
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   String _mobNumber;
 
   final TextStyle headingTxt = TextStyle(
@@ -16,12 +23,13 @@ class CustomerLoginScreens extends StatelessWidget {
 
   bool _isLoading = false;
 
-// this functions is called after the mobile varification are ended in this
-// notifications are given and data are check with dataBase
+  final _phoneNumberFeild = TextEditingController();
+
+  String _validate;
 
   void submitProcess(bool val, bool auto) {
     if (!auto) {
-      //    Navigator.of(context).pop();
+      Navigator.of(context).pop();
     }
     if (!val) {
       _scaffoldKey.currentState.showSnackBar(SnackBar(
@@ -32,9 +40,9 @@ class CustomerLoginScreens extends StatelessWidget {
 
     // enter the validation for account checking through database and more in here
 
-    ///  setState(() {
-    //   _isLoading = false;
-    // });
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -66,12 +74,15 @@ class CustomerLoginScreens extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       infoText(context),
-                      nameTextField(context),
                       phoneNoTextField(context),
                       SizedBox(
                         height: 20,
                       ),
-                      signupRaisedButton(screenWidth, context)
+                      _isLoading
+                          ? Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : signupRaisedButton(screenWidth, context)
                     ],
                   ),
                 )),
@@ -83,23 +94,11 @@ class CustomerLoginScreens extends StatelessWidget {
 
   Text infoText(BuildContext context) {
     return Text(
-      "Please enter your details to sign in",
+      "Please enter your details to Login",
       style: TextStyle(
           color: Theme.of(context).accentColor,
           fontWeight: FontWeight.w500,
           fontSize: 17),
-    );
-  }
-
-  Container nameTextField(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
-      padding: EdgeInsets.all(5),
-      decoration: textfeildDecoration,
-      child: TextField(
-        cursorColor: Theme.of(context).accentColor,
-        decoration: innerInputFeildDecoration(context, 'Username'),
-      ),
     );
   }
 
@@ -109,8 +108,10 @@ class CustomerLoginScreens extends StatelessWidget {
       padding: EdgeInsets.all(5),
       decoration: textfeildDecoration,
       child: TextField(
+        controller: _phoneNumberFeild,
         cursorColor: Theme.of(context).accentColor,
-        decoration: innerInputFeildDecoration(context, 'Password'),
+        decoration:
+            innerInputFeildDecoration(context, 'Phone Number', _validate),
       ),
     );
   }
@@ -125,7 +126,25 @@ class CustomerLoginScreens extends StatelessWidget {
           elevation: 5,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(4))),
-          onPressed: () {},
+          onPressed: () {
+
+            _mobNumber = _phoneNumberFeild.text.trim();
+            if (_phoneNumberFeild.text.trim() != null &&
+                _phoneNumberFeild.text.trim().length == 10) {
+              _mobNumber = '+91$_mobNumber';
+              setState(() {
+                _isLoading = true;
+                _validate ='';
+              });
+              //function get from inherited class
+              loginUser(_mobNumber, context, submitProcess);
+            } else {
+              setState(() {
+                _validate = 'Please enter Valid Number';
+              });
+            }
+
+          },
           padding: EdgeInsets.only(top: 10, bottom: 10),
           child: Text(
             'Sign in',

@@ -20,10 +20,11 @@ BoxDecoration textfeildDecoration = BoxDecoration(
 );
 
 InputDecoration innerInputFeildDecoration(
-    BuildContext context, String placeholder) {
+    BuildContext context, String placeholder, String _validate) {
   return InputDecoration(
     border: InputBorder.none,
     hintText: placeholder,
+    errorText: _validate,
     contentPadding: EdgeInsets.only(left: 10),
     hintStyle: TextStyle(fontSize: 20.0, color: Theme.of(context).accentColor),
   );

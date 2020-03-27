@@ -41,7 +41,7 @@ class FirebaseMobAuth {
                     children: <Widget>[
                       TextField(
                         decoration:
-                            innerInputFeildDecoration(context, 'SMS CODE'),
+                            innerInputFeildDecoration(context, 'SMS CODE', ''),
                         keyboardType: TextInputType.number,
                         controller: _codeController,
                       )
