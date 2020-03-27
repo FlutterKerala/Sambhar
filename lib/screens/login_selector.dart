@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sambharapp/screens/consumer_signup.dart';
 import 'package:sambharapp/screens/customer_login_screens.dart';
+import 'package:sambharapp/screens/seller_signin.dart';
 
 class LoginSelector extends StatelessWidget {
   @override
@@ -78,7 +79,12 @@ class LoginSelector extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(6))),
                   padding: EdgeInsets.only(left: 10, right: 10),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => SellerLoginScreens()));
+                  },
                   elevation: 3,
                   color: Colors.white,
                   child: Text(

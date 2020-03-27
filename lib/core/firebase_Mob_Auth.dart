@@ -77,7 +77,7 @@ class FirebaseMobAuth {
                             submitProcess(false, false);
                           }
                         },
-                        child: Text('Conform'))
+                        child: Text('Confirm'))
                   ],
                 );
               });
