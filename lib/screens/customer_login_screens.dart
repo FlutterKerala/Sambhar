@@ -10,7 +10,7 @@ class CustomerLoginScreens extends StatefulWidget {
 
 class _CustomerLoginScreensState extends State<CustomerLoginScreens>
     with FirebaseMobAuth {
-      // FirebaseMobAuth is an inherite class to do firebase auth
+  // FirebaseMobAuth is an inherite class to do firebase auth
   final _formKey = GlobalKey<FormState>();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -106,7 +106,7 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.all(5),
-      height: 50,
+      height: 60,
       decoration: textfeildDecoration,
       child: TextField(
         controller: _phoneNumberFeild,
@@ -128,14 +128,13 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(4))),
           onPressed: () {
-
             _mobNumber = _phoneNumberFeild.text.trim();
             if (_phoneNumberFeild.text.trim() != null &&
                 _phoneNumberFeild.text.trim().length == 10) {
               _mobNumber = '+91$_mobNumber';
               setState(() {
                 _isLoading = true;
-                _validate ='';
+                _validate = '';
               });
               //function get from inherited class
               loginUser(_mobNumber, context, submitProcess);
@@ -144,7 +143,6 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
                 _validate = 'Please enter Valid Number';
               });
             }
-
           },
           padding: EdgeInsets.only(top: 10, bottom: 10),
           child: Text(
