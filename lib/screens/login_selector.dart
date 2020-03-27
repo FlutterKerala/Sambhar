@@ -20,6 +20,7 @@ class LoginSelector extends StatelessWidget {
           child: Scaffold(
               appBar: PreferredSize(
                   child: AppBar(
+                    leading: SizedBox(),
                     backgroundColor: Colors.red,
                     elevation: 0,
                     flexibleSpace: Image(
