@@ -52,10 +52,10 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
             .userLoginData(_mobNumber, 'Consumer');
 
     if (userInDataBase) {
-      print('in');
+      debugPrint('in');
       Navigator.of(context).pushReplacementNamed(TemporaryScreen.routeName);
     } else {
-      print('out');
+      debugPrint('out');
       _scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text('Your are not a member Please Sigin'),
         duration: Duration(seconds: 3),

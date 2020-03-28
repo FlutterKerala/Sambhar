@@ -17,15 +17,15 @@ class FirebaseMobAuth {
           FirebaseUser user = result.user;
 
           if (user != null) {
-            print('verification is done automatically and sucess');
+            debugPrint('verification is done automatically and sucess');
             submitProcess(true, true);
           } else {
-            print('error');
+            debugPrint('error');
             submitProcess(false, true);
           }
         },
         verificationFailed: (AuthException exception) {
-          print(exception.message);
+          debugPrint(exception.message);
           submitProcess(false, true);
         },
         codeSent: (String verificationId, [int forceResendingToken]) {
@@ -60,19 +60,19 @@ class FirebaseMobAuth {
 
                           result = await _auth.signInWithCredential(credential);
                         } catch (e) {
-                          // print('catch error');
+                          // debugPrint('catch error');
                           submitProcess(false, false);
-                          // print(e);
+                          // debugPrint(e);
                           return;
                         }
 
                         FirebaseUser user = result.user;
                         if (user != null) {
-                          print(
+                          debugPrint(
                               'verification is done automatically and sucess');
                           submitProcess(true, false);
                         } else {
-                          print('error');
+                          debugPrint('error');
                           submitProcess(false, false);
                         }
                       },

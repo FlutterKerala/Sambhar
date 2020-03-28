@@ -409,7 +409,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
         _addressController.clear();
       });
     } else
-      print("Not success");
+      debugPrint("Not success");
       scheduleRebuild();
   }
 

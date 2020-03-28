@@ -223,7 +223,7 @@ class _AddShopState extends State<AddShop> {
         duration: Duration(minutes: 5),
         content: Text("Registering .. Please wait"),
       ));
-      print(model.gstid);
+      
       model.dob = widget.sellerModel.dob;
       model.name = widget.sellerModel.name;
       model.address = widget.sellerModel.address;
@@ -247,7 +247,7 @@ class _AddShopState extends State<AddShop> {
         },
       );
     } else
-      print("Not success");
+      debugPrint("Not success");
   }
 
   void scheduleRebuild() {
