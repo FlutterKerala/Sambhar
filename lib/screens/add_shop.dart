@@ -4,9 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:sambharapp/models/seller_model.dart';
 import 'package:sambharapp/screens/login_selector.dart';
 import 'package:sambharapp/widgets/signup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddShop extends StatefulWidget {
-  SellerModel sellerModel;
+  final SellerModel sellerModel;
 
   AddShop({this.sellerModel});
 
@@ -223,7 +224,7 @@ class _AddShopState extends State<AddShop> {
         duration: Duration(minutes: 5),
         content: Text("Registering .. Please wait"),
       ));
-      print(model.gstid);
+
       model.dob = widget.sellerModel.dob;
       model.name = widget.sellerModel.name;
       model.address = widget.sellerModel.address;
@@ -232,6 +233,8 @@ class _AddShopState extends State<AddShop> {
       model.pincode = widget.sellerModel.pincode;
 
       await _reference.collection('Seller').document().setData(model.toJson());
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      preferences.setString("type", "seller");
       await _reference
           .collection('Seller')
           .document(widget.sellerModel.pincode)
@@ -247,7 +250,7 @@ class _AddShopState extends State<AddShop> {
         },
       );
     } else
-      print("Not success");
+      debugPrint("Not success");
   }
 
   void scheduleRebuild() {

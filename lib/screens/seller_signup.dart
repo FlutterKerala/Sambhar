@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sambharapp/models/consumer_model.dart';
 import 'package:sambharapp/models/seller_model.dart';
 import 'package:sambharapp/screens/add_shop.dart';
 import 'package:sambharapp/widgets/signup.dart';
@@ -49,17 +47,10 @@ class _SellerSignUpState extends State<SellerSignUp> {
     fontSize: 20.0,
   );
 
-  TextStyle _logoHeader = TextStyle(
-    color: Colors.green,
-    fontSize: 25.0,
-  );
-
   TextEditingController _nameController,
       _phoneController,
       _pincodeController,
       _addressController;
-
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -328,7 +319,7 @@ class _SellerSignUpState extends State<SellerSignUp> {
   _navToAddShop() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      print(model.dob);
+      debugPrint(model.dob.toString());
       Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => AddShop(sellerModel: model)),

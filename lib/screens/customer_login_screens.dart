@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sambharapp/provider/firebase_consumer_login.dart';
 import 'package:sambharapp/screens/TemporaryScreen.dart';
 import 'package:sambharapp/widgets/signup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/inputs.dart';
 import '../core/firebase_Mob_Auth.dart';
 
@@ -52,10 +53,12 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
             .userLoginData(_mobNumber, 'Consumer');
 
     if (userInDataBase) {
-      print('in');
+      debugPrint('in');
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      preferences.setString("type", "seller");
       Navigator.of(context).pushReplacementNamed(TemporaryScreen.routeName);
     } else {
-      print('out');
+      debugPrint('out');
       _scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Text('Your are not a member Please Sigin'),
         duration: Duration(seconds: 3),
