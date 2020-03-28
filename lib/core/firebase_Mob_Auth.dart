@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sambharapp/widgets/input_feild_code_design.dart';
+import 'package:sambharapp/widgets/inputs.dart';
 
 class FirebaseMobAuth {
   final _codeController = TextEditingController();
@@ -41,7 +41,7 @@ class FirebaseMobAuth {
                     children: <Widget>[
                       TextField(
                         decoration:
-                            innerInputFeildDecoration(context, 'SMS CODE', ''),
+                            innerInputFieldDecoration(context, 'SMS CODE', ''),
                         keyboardType: TextInputType.number,
                         controller: _codeController,
                       )

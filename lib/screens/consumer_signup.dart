@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sambharapp/models/consumer_model.dart';
-import 'package:sambharapp/widgets/sign_page_top_widgets.dart';
+import 'package:sambharapp/widgets/signup.dart';
 
 class ConsumerSignUp extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
 
   ConsumerModel model;
 
-  BoxDecoration textfeildDecoration = BoxDecoration(
+  BoxDecoration textfieldDecoration = BoxDecoration(
     color: const Color.fromRGBO(232, 238, 243, 1),
     borderRadius: new BorderRadius.all(
       const Radius.circular(10.0),
@@ -162,7 +162,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
         horizontal: 15.0,
         vertical: 5.0,
       ),
-      decoration: textfeildDecoration,
+      decoration: textfieldDecoration,
       child: TextFormField(
         controller: _nameController,
         validator: (value) {
@@ -193,7 +193,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
         horizontal: 15.0,
         vertical: 5.0,
       ),
-      decoration: textfeildDecoration,
+      decoration: textfieldDecoration,
       child: TextFormField(
         cursorColor: Theme.of(context).accentColor,
         controller: _phoneController,
@@ -229,7 +229,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
           horizontal: 15.0,
           vertical: 20.0,
         ),
-        decoration: textfeildDecoration,
+        decoration: textfieldDecoration,
         child: Text(
           _dateValue,
           style: TextStyle(
@@ -267,7 +267,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
         horizontal: 15.0,
         // vertical: 20.0,
       ),
-      decoration: textfeildDecoration,
+      decoration: textfieldDecoration,
       child: DropdownButtonFormField(
         validator: (value) {
           if (value.isEmpty || value == 'Choose Gender')
@@ -312,7 +312,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
         horizontal: 15.0,
         vertical: 5.0,
       ),
-      decoration: textfeildDecoration,
+      decoration: textfieldDecoration,
       child: TextFormField(
         controller: _pincodeController,
         validator: (value) {
@@ -344,7 +344,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
         horizontal: 15.0,
         vertical: 5.0,
       ),
-      decoration: textfeildDecoration,
+      decoration: textfieldDecoration,
       child: TextFormField(
         cursorColor: Theme.of(context).accentColor,
         controller: _addressController,

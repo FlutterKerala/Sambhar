@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sambharapp/provider/firebase_consumer_login.dart';
-import 'package:sambharapp/widgets/sign_page_top_widgets.dart';
-import '../widgets/input_feild_code_design.dart';
+import 'package:sambharapp/widgets/signup.dart';
+import 'package:sambharapp/widgets/inputs.dart';
 import '../core/firebase_Mob_Auth.dart';
 import 'TemporaryScreen.dart';
 
@@ -127,12 +127,12 @@ class _SellerLoginScreensState extends State<SellerLoginScreens>
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.all(5),
       height: 60,
-      decoration: textfeildDecoration,
+      decoration: textFieldDecoration,
       child: TextField(
         controller: _phoneNumberFeild,
         cursorColor: Theme.of(context).accentColor,
         decoration:
-            innerInputFeildDecoration(context, 'Phone Number', _validate),
+            innerInputFieldDecoration(context, 'Phone Number', _validate),
       ),
     );
   }

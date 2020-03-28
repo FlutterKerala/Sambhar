@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-BoxDecoration textfeildDecoration = BoxDecoration(
+BoxDecoration textFieldDecoration = BoxDecoration(
   color: const Color.fromRGBO(232, 238, 243, 1),
   borderRadius: new BorderRadius.all(
     const Radius.circular(10.0),
@@ -19,7 +19,7 @@ BoxDecoration textfeildDecoration = BoxDecoration(
   ],
 );
 
-InputDecoration innerInputFeildDecoration(
+InputDecoration innerInputFieldDecoration(
     BuildContext context, String placeholder, String _validate) {
   return InputDecoration(
     border: InputBorder.none,

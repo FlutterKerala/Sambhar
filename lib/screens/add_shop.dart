@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sambharapp/models/seller_model.dart';
 import 'package:sambharapp/screens/login_selector.dart';
-import 'package:sambharapp/widgets/sign_page_top_widgets.dart';
+import 'package:sambharapp/widgets/signup.dart';
 
 class AddShop extends StatefulWidget {
   SellerModel sellerModel;
@@ -25,7 +25,7 @@ class _AddShopState extends State<AddShop> {
 
   Firestore _reference;
 
-  BoxDecoration textfeildDecoration = BoxDecoration(
+  BoxDecoration textfieldDecoration = BoxDecoration(
     color: const Color.fromRGBO(232, 238, 243, 1),
     borderRadius: new BorderRadius.all(
       const Radius.circular(10.0),
@@ -70,7 +70,7 @@ class _AddShopState extends State<AddShop> {
         horizontal: 15.0,
         vertical: 5.0,
       ),
-      decoration: textfeildDecoration,
+      decoration: textfieldDecoration,
       child: TextFormField(
         controller: _shopnameController,
         validator: (value) {
@@ -101,7 +101,7 @@ class _AddShopState extends State<AddShop> {
         horizontal: 15.0,
         vertical: 5.0,
       ),
-      decoration: textfeildDecoration,
+      decoration: textfieldDecoration,
       child: TextFormField(
         cursorColor: Theme.of(context).accentColor,
         controller: _shopLocController,
@@ -133,7 +133,7 @@ class _AddShopState extends State<AddShop> {
         horizontal: 15.0,
         vertical: 5.0,
       ),
-      decoration: textfeildDecoration,
+      decoration: textfieldDecoration,
       child: TextFormField(
         controller: _pincodeController,
         validator: (value) {
@@ -165,7 +165,7 @@ class _AddShopState extends State<AddShop> {
         horizontal: 15.0,
         vertical: 5.0,
       ),
-      decoration: textfeildDecoration,
+      decoration: textfieldDecoration,
       child: TextFormField(
         cursorColor: Theme.of(context).accentColor,
         controller: _gstidController,
