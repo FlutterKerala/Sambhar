@@ -175,7 +175,7 @@ class _AddShopState extends State<AddShop> {
           else
             return null;
         },
-        onSaved: (value) => model.address = value,
+        onSaved: (value) => model.gstid = value,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: 'GST ID (Optional)',
@@ -223,6 +223,14 @@ class _AddShopState extends State<AddShop> {
         duration: Duration(minutes: 5),
         content: Text("Registering .. Please wait"),
       ));
+      print(model.gstid);
+      model.dob = widget.sellerModel.dob;
+      model.name = widget.sellerModel.name;
+      model.address = widget.sellerModel.address;
+      model.gender = widget.sellerModel.gender;
+      model.phone = widget.sellerModel.phone;
+      model.pincode = widget.sellerModel.pincode;
+
       await _reference.collection('Seller').document().setData(model.toJson());
       await _reference
           .collection('Seller')

@@ -328,6 +328,7 @@ class _SellerSignUpState extends State<SellerSignUp> {
   _navToAddShop() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
+      print(model.dob);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => AddShop(sellerModel: model)),
