@@ -11,7 +11,6 @@ class ConsumerSignUp extends StatefulWidget {
 
 class _ConsumerSignUpState extends State<ConsumerSignUp> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   TextEditingController _nameController,
       _phoneController,
@@ -51,18 +50,8 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
       fontSize: 25,
       fontWeight: FontWeight.w700);
 
-  TextStyle _logoHeader = TextStyle(
-    color: Colors.green,
-    fontSize: 25.0,
-  );
-
   TextStyle _labelStyle = TextStyle(
     color: Colors.green,
-    fontSize: 20.0,
-  );
-
-  TextStyle _buttonText = TextStyle(
-    color: Colors.white,
     fontSize: 20.0,
   );
 
@@ -117,40 +106,6 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
           ),
         ),
       ),
-    );
-  }
-
-  _headerRow() {
-    return Column(
-      children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Image.asset(
-              'assets/images/icons.png',
-              height: 150,
-              width: 150,
-            ),
-            Text(
-              'Consumer\nSignup',
-              style: _logoHeader,
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 10.0,
-            horizontal: 5.0,
-          ),
-          child: Text(
-            "Please enter your details to sign up",
-            style: TextStyle(
-              color: Color.fromRGBO(94, 191, 70, 1),
-              fontSize: 18.0,
-            ),
-          ),
-        ),
-      ],
     );
   }
 
@@ -410,7 +365,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
       });
     } else
       debugPrint("Not success");
-      scheduleRebuild();
+    scheduleRebuild();
   }
 
   void scheduleRebuild() {

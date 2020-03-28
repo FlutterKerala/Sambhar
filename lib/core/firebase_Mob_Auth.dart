@@ -5,7 +5,7 @@ import 'package:sambharapp/widgets/inputs.dart';
 class FirebaseMobAuth {
   final _codeController = TextEditingController();
 // firbase mobile auth Functions
-  Future<bool> loginUser(
+  Future loginUser(
       String phone, BuildContext context, Function submitProcess) async {
     FirebaseAuth _auth = FirebaseAuth.instance;
 

@@ -52,8 +52,6 @@ class _SellerSignUpState extends State<SellerSignUp> {
       _pincodeController,
       _addressController;
 
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   void initState() {
     super.initState();

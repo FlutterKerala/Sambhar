@@ -6,7 +6,7 @@ import 'package:sambharapp/screens/login_selector.dart';
 import 'package:sambharapp/widgets/signup.dart';
 
 class AddShop extends StatefulWidget {
-  SellerModel sellerModel;
+  final SellerModel sellerModel;
 
   AddShop({this.sellerModel});
 
@@ -223,7 +223,7 @@ class _AddShopState extends State<AddShop> {
         duration: Duration(minutes: 5),
         content: Text("Registering .. Please wait"),
       ));
-      
+
       model.dob = widget.sellerModel.dob;
       model.name = widget.sellerModel.name;
       model.address = widget.sellerModel.address;
