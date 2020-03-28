@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sambharapp/models/consumer_model.dart';
 import 'package:sambharapp/widgets/signup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ConsumerSignUp extends StatefulWidget {
   @override
@@ -10,22 +11,13 @@ class ConsumerSignUp extends StatefulWidget {
 }
 
 class _ConsumerSignUpState extends State<ConsumerSignUp> {
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  TextEditingController _nameController,
-      _phoneController,
-      _pincodeController,
-      _addressController;
-
-  double screenWidth;
-
-  DateTime _dateTime;
-  String _dateValue;
-  String _gender;
-  List<String> _genderList;
+  TextStyle headingTxt = TextStyle(
+      color: const Color.fromRGBO(94, 191, 70, 1),
+      fontSize: 25,
+      fontWeight: FontWeight.w700);
 
   ConsumerModel model;
-
+  double screenWidth;
   BoxDecoration textfieldDecoration = BoxDecoration(
     color: const Color.fromRGBO(232, 238, 243, 1),
     borderRadius: new BorderRadius.all(
@@ -45,15 +37,20 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
     ],
   );
 
-  TextStyle headingTxt = TextStyle(
-      color: const Color.fromRGBO(94, 191, 70, 1),
-      fontSize: 25,
-      fontWeight: FontWeight.w700);
-
+  DateTime _dateTime;
+  String _dateValue;
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String _gender;
+  List<String> _genderList;
   TextStyle _labelStyle = TextStyle(
     color: Colors.green,
     fontSize: 20.0,
   );
+
+  TextEditingController _nameController,
+      _phoneController,
+      _pincodeController,
+      _addressController;
 
   @override
   void initState() {
@@ -66,47 +63,6 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
     _dateValue = "DOB";
     _gender = 'Choose Gender';
     _genderList = ['Choose Gender', 'Male', 'Female', 'Other'];
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Padding(
-          padding: MediaQuery.of(context).padding,
-          child: Container(
-            padding: EdgeInsets.only(
-              left: 50.0,
-              right: 50.0,
-              top: 30.0,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                siginPageTopWidgets(
-                    screenWidth, headingTxt, "Consumer", "Signup"),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      _nameTextField(),
-                      _phoneTextField(),
-                      _dob(),
-                      _genderDropDown(),
-                      _pinCodeTextField(),
-                      _addressTextField(),
-                      _signUpButton(),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
   }
 
   _nameTextField() {
@@ -363,6 +319,8 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
         _pincodeController.clear();
         _addressController.clear();
       });
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      preferences.setString("type", "consumer");
     } else
       debugPrint("Not success");
     scheduleRebuild();
@@ -370,5 +328,46 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
 
   void scheduleRebuild() {
     setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    return Scaffold(
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Padding(
+          padding: MediaQuery.of(context).padding,
+          child: Container(
+            padding: EdgeInsets.only(
+              left: 50.0,
+              right: 50.0,
+              top: 30.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                siginPageTopWidgets(
+                    screenWidth, headingTxt, "Consumer", "Signup"),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      _nameTextField(),
+                      _phoneTextField(),
+                      _dob(),
+                      _genderDropDown(),
+                      _pinCodeTextField(),
+                      _addressTextField(),
+                      _signUpButton(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

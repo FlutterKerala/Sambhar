@@ -2,17 +2,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sambharapp/states/LoginStatus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FirebaseLogin with ChangeNotifier {
   LoginStatus _loginStatus = LoginStatus.NotLoggedIn;
-
+  String userType = "";
   LoginStatus get loginStatus => _loginStatus;
 
   FirebaseLogin() {
-    FirebaseAuth.instance.currentUser().then((user) {
+    FirebaseAuth.instance.currentUser().then((user) async {
       if (user != null) {
+        SharedPreferences preferences = await SharedPreferences.getInstance();
         _loginStatus = LoginStatus.LoggedIn;
-
+        userType = preferences.getString("type");
         notifyListeners();
       }
     });

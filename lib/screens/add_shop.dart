@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:sambharapp/models/seller_model.dart';
 import 'package:sambharapp/screens/login_selector.dart';
 import 'package:sambharapp/widgets/signup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddShop extends StatefulWidget {
   final SellerModel sellerModel;
@@ -232,6 +233,8 @@ class _AddShopState extends State<AddShop> {
       model.pincode = widget.sellerModel.pincode;
 
       await _reference.collection('Seller').document().setData(model.toJson());
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      preferences.setString("type", "seller");
       await _reference
           .collection('Seller')
           .document(widget.sellerModel.pincode)

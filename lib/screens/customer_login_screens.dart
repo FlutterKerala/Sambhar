@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sambharapp/provider/firebase_consumer_login.dart';
 import 'package:sambharapp/screens/TemporaryScreen.dart';
 import 'package:sambharapp/widgets/signup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/inputs.dart';
 import '../core/firebase_Mob_Auth.dart';
 
@@ -53,6 +54,8 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
 
     if (userInDataBase) {
       debugPrint('in');
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      preferences.setString("type", "seller");
       Navigator.of(context).pushReplacementNamed(TemporaryScreen.routeName);
     } else {
       debugPrint('out');

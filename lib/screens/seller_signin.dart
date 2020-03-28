@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sambharapp/provider/firebase_consumer_login.dart';
 import 'package:sambharapp/widgets/signup.dart';
 import 'package:sambharapp/widgets/inputs.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../core/firebase_Mob_Auth.dart';
 import 'TemporaryScreen.dart';
 
@@ -30,7 +31,7 @@ class _SellerLoginScreensState extends State<SellerLoginScreens>
 
   String _validate;
 
-  Future<void> submitProcess(bool val, bool auto)  async {
+  Future<void> submitProcess(bool val, bool auto) async {
     if (!auto) {
       Navigator.of(context).pop();
     }
@@ -41,15 +42,16 @@ class _SellerLoginScreensState extends State<SellerLoginScreens>
       ));
     }
 
-
     // enter the validation for account checking through database and more in here
 
-     bool userInDataBase =
+    bool userInDataBase =
         await Provider.of<FirebaseLogin>(context, listen: false)
             .userLoginData(_mobNumber, 'Seller');
 
     if (userInDataBase) {
       debugPrint('in');
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      preferences.setString("type", "seller");
       Navigator.of(context).pushReplacementNamed(TemporaryScreen.routeName);
     } else {
       debugPrint('out');
@@ -58,7 +60,6 @@ class _SellerLoginScreensState extends State<SellerLoginScreens>
         duration: Duration(seconds: 3),
       ));
     }
-
 
     setState(() {
       _isLoading = false;
