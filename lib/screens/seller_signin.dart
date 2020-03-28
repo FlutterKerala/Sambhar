@@ -46,7 +46,7 @@ class _SellerLoginScreensState extends State<SellerLoginScreens>
 
      bool userInDataBase =
         await Provider.of<FirebaseLogin>(context, listen: false)
-            .userLoginData(_mobNumber, 'seller');
+            .userLoginData(_mobNumber, 'Seller');
 
     if (userInDataBase) {
       print('in');
