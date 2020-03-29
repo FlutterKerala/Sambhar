@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:sambharapp/screens/sellers/edit_items.dart';
+import 'package:sambharapp/widgets/sub_txt_widgets.dart';
 
 class ListViewBuilderProducts extends StatelessWidget {
-  final Stream<QuerySnapshot> stremData ;
-              ListViewBuilderProducts({
-              @required this.stremData,
-              });
+  final Stream<QuerySnapshot> stremData;
+  ListViewBuilderProducts({
+    @required this.stremData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +27,17 @@ class ListViewBuilderProducts extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    textCard('${snapshot.data.documents.length.toString()} Items'),
+                    textCard(
+                        '${snapshot.data.documents.length.toString()} Items'),
                     SizedBox(
                       height: 10,
                     ),
                     ListView(
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      children:
-                          snapshot.data.documents.map((DocumentSnapshot document) {
-                        return innerListVeiw(document);
+                      children: snapshot.data.documents
+                          .map((DocumentSnapshot document) {
+                        return innerListVeiw(document, context);
                       }).toList(),
                     ),
                   ],
@@ -44,22 +47,28 @@ class ListViewBuilderProducts extends StatelessWidget {
     );
   }
 
-  Container innerListVeiw(DocumentSnapshot document) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(
-            Radius.circular(5.0),
-          ),
-          boxShadow: [
-            BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.25),
-                blurRadius: 24,
-                offset: Offset(0, 2.1))
-          ]),
-      child: Row(
-        children: <Widget>[iconReplacment(), dataInsideListVeiw(document)],
+  GestureDetector innerListVeiw(
+      DocumentSnapshot document, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushNamed(EditIteams.routeName);
+      },
+      child: Container(
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(
+              Radius.circular(5.0),
+            ),
+            boxShadow: [
+              BoxShadow(
+                  color: Color.fromRGBO(0, 0, 0, 0.25),
+                  blurRadius: 24,
+                  offset: Offset(0, 2.1))
+            ]),
+        child: Row(
+          children: <Widget>[iconReplacment(document.data['imageUrl']), dataInsideListVeiw(document)],
+        ),
       ),
     );
   }
@@ -81,29 +90,11 @@ class ListViewBuilderProducts extends StatelessWidget {
     );
   }
 
-  Text textCard(String data) {
-    return Text(
-      data,
-      style: TextStyle(
-        fontSize: 20,
-        color: Color.fromRGBO(94, 191, 70, 1),
-        fontWeight: FontWeight.w500,
-      ),
-    );
-  }
-
-  Container iconReplacment() {
+  Container iconReplacment(String imgUrl) {
     return Container(
-      padding: EdgeInsets.all(10),
-      child: Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-            color: Colors.redAccent,
-            borderRadius: BorderRadius.all(
-              Radius.circular(5.0),
-            )),
-      ),
-    );
+      margin: EdgeInsets.only(right: 30),
+      height: 60,
+      width: 60,
+      child: Image.network(imgUrl, fit: BoxFit.fill,));
   }
 }

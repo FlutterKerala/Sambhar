@@ -46,7 +46,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
     final screenheight = MediaQuery.of(context).size.height;
     final screnWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: dashboardAppBar(),
+      appBar: dashboardAppBar('Inventory Review'),
       body: SingleChildScrollView(
         child: _isLoading
             ? Center(

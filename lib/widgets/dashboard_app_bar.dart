@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
 
- AppBar dashboardAppBar() {
+ AppBar dashboardAppBar(String titleName) {
     return AppBar(
-      title: Text('Inventory Review'),
+      title: Text(titleName),
       flexibleSpace: Image(
         image: AssetImage('assets/images/appbar.png'),
         fit: BoxFit.cover,

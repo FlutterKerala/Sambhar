@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sambharapp/provider/firebase_consumer_login.dart';
 import 'package:sambharapp/screens/consumer_dashboard.dart';
 import 'package:sambharapp/screens/login_selector.dart';
+import 'package:sambharapp/screens/sellers/edit_items.dart';
 import 'package:sambharapp/states/LoginStatus.dart';
 import './screens/sellers/sellers_dashboard.dart';
 import './themes/main_themes.dart';
@@ -19,10 +20,11 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
+          debugShowCheckedModeBanner: false,
           theme: mainThemes(),
           routes: {
             ConsumerDashboard.routeName: (ctx) => ConsumerDashboard(),
+            EditIteams.routeName: (ctx) => EditIteams(),
           },
           home: Consumer<FirebaseLogin>(
             builder: (context, firebaseprovider, child) {
