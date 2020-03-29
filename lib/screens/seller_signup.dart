@@ -242,7 +242,7 @@ class _SellerSignUpState extends State<SellerSignUp> {
           else
             return null;
         },
-        onSaved: (value) => model.pincode = value,
+        onSaved: (value) => model.homePincode = value,
         keyboardType: TextInputType.number,
         cursorColor: Theme.of(context).accentColor,
         decoration: InputDecoration(

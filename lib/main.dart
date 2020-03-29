@@ -4,6 +4,7 @@ import 'package:sambharapp/provider/firebase_consumer_login.dart';
 import 'package:sambharapp/screens/consumer_dashboard.dart';
 import 'package:sambharapp/screens/login_selector.dart';
 import 'package:sambharapp/states/LoginStatus.dart';
+import './screens/sellers/sellers_dashboard.dart';
 import './themes/main_themes.dart';
 
 void main() => runApp(MyApp());
