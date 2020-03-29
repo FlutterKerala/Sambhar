@@ -19,6 +19,18 @@ Consumers dashboard also shows the amount of inventory left, so that he can keep
 
 At this first phase, we haven't implemented the delivery service and has built the app with the consideration that the delivery will be managed by the seller as Government approval is needed for commuting under Corona lockdown circumstances. But it would be the straightforward next step to implement a delivery service inside this application to do the delivery management.
 
+# Design
+
+## Visual language
+
+## Palette
+
+## Typography
+
+## Icons
+
+## UI Flow
+
 # Development
 
 App is developed using Flutter on the frontend as it allows for compiling down to iOS, Android, and Web in one go and Firebase for the backend operations. This helps considerably in broadening the reach and allows for fast iteration times.
