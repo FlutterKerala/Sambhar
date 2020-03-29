@@ -7,7 +7,8 @@ class SellerModel {
       shoploc,
       gstid,
       shoppin,
-      pincode,
+      home_pincode,
+      shop_pincode,
       type;
   DateTime dob;
 
@@ -18,7 +19,8 @@ class SellerModel {
         phone = json['phone'],
         gender = json['gender'],
         address = json['address'],
-        pincode = json['pincode'],
+        home_pincode = json['home_pincode'],
+        shop_pincode = json['shop_pincode'],
         dob = json['dob'],
         shopname = json['shopname'],
         gstid = json['gstid'],
@@ -31,7 +33,8 @@ class SellerModel {
         'phone': phone,
         'gender': gender,
         'address': address,
-        'pincode': pincode,
+        'home_pincode': home_pincode,
+        'shop_pincode' : shop_pincode,
         'dob': dob,
         'shopname': shopname,
         'gstid': gstid,
