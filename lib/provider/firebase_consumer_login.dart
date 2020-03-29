@@ -58,4 +58,6 @@ class FirebaseLogin with ChangeNotifier {
       return false;
     }
   }
+
+  
 }

@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
                       .LoggedIn) if (firebaseprovider.userType == "Consumer")
                 return ConsumerDashboard(); //If User Is Consumer Push To Consumer Dash
               else
-                return ConsumerDashboard(); // Else Push To Seller Page
+                return SellerDashboard(); // Else Push To Seller Page
               else
                 return LoginSelector(); //Else To Login Selector Page
             },
