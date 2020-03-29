@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class SellerModel {
   String name,
       phone,
@@ -19,9 +21,14 @@ class SellerModel {
         phone = json['phone'],
         gender = json['gender'],
         address = json['address'],
+<<<<<<< HEAD
         home_pincode = json['home_pincode'],
         shop_pincode = json['shop_pincode'],
         dob = json['dob'],
+=======
+        pincode = json['pincode'],
+        dob = json['dob'].toDate(),
+>>>>>>> 8759535eba8e2aeffe9d2c46bce16a3f36e4a2e1
         shopname = json['shopname'],
         gstid = json['gstid'],
         shoploc = json["shoplocation"],

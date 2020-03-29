@@ -226,7 +226,7 @@ class _AddShopState extends State<AddShop> {
       
       // await _reference.collection('Seller').document().setData(model.toJson());
       SharedPreferences preferences = await SharedPreferences.getInstance();
-      preferences.setString("type", "seller");
+      preferences.setString("type", "Seller");
       await _reference
           .collection('Seller')
           .document(widget.sellerModel.shopPincode)
