@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sambharapp/models/cart_item.dart';
 import 'package:sambharapp/provider/cart_provider.dart';
+import 'package:sambharapp/widgets/ItemListTile.dart';
 
 class ConsumerCart extends StatelessWidget {
   @override
@@ -25,6 +26,7 @@ class ConsumerCart extends StatelessWidget {
             children: <Widget>[
               Text("Full amount"),
               Text('${_cartProvider.price}'),
+              _cartItemList(_cartProvider.cartItems),
             ],
           ),
         ),
@@ -36,7 +38,11 @@ class ConsumerCart extends StatelessWidget {
     return ListView(
       shrinkWrap: true,
       physics: ScrollPhysics(),
-      children: cartItem.map((item) {}).toList(),
+      children: cartItem.map((item) {
+        return ItemListTile(
+          cartItem: item,
+        );
+      }).toList(),
     );
   }
 }
