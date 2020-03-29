@@ -22,13 +22,22 @@ class ListViewBuilderProducts extends StatelessWidget {
                 );
                 break;
               default:
-                return ListView(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  children:
-                      snapshot.data.documents.map((DocumentSnapshot document) {
-                    return innerListVeiw(document);
-                  }).toList(),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    textCard('${snapshot.data.documents.length.toString()} Items'),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ListView(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      children:
+                          snapshot.data.documents.map((DocumentSnapshot document) {
+                        return innerListVeiw(document);
+                      }).toList(),
+                    ),
+                  ],
                 );
             }
           }),
