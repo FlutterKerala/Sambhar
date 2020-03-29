@@ -21,6 +21,8 @@ At this first phase, we haven't implemented the delivery service and has built t
 
 # Design
 
+Here is the [[Figma document](https://www.figma.com/file/FkwYAYqNheFt1P2tv3PvSK/Sambhar-Design?node-id=0%3A1)] where we conducted all of our designs.
+
 ## Visual language
 
 ## Palette
