@@ -7,6 +7,7 @@
         fontSize: 20,
         color: Color.fromRGBO(94, 191, 70, 1),
         fontWeight: FontWeight.w500,
+        
       ),
     );
   }
