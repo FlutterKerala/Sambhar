@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ConsumerCart extends StatelessWidget {
+class CartRefreshing extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,7 +9,11 @@ class ConsumerCart extends StatelessWidget {
         automaticallyImplyLeading: true,
         backgroundColor: Theme.of(context).accentColor,
       ),
-      body: Container(),
+      body: Container(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      ),
     );
   }
 }
