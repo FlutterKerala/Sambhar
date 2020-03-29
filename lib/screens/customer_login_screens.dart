@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sambharapp/provider/firebase_consumer_login.dart';
-import 'package:sambharapp/screens/TemporaryScreen.dart';
+import 'package:sambharapp/screens/consumer_dashboard.dart';
 import 'package:sambharapp/widgets/signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../widgets/inputs.dart';
@@ -55,8 +55,8 @@ class _CustomerLoginScreensState extends State<CustomerLoginScreens>
     if (userInDataBase) {
       debugPrint('in');
       SharedPreferences preferences = await SharedPreferences.getInstance();
-      preferences.setString("type", "seller");
-      Navigator.of(context).pushReplacementNamed(TemporaryScreen.routeName);
+      preferences.setString("type", "Consumer");
+      Navigator.of(context).pushReplacementNamed(ConsumerDashboard.routeName);
     } else {
       debugPrint('out');
       _scaffoldKey.currentState.showSnackBar(SnackBar(

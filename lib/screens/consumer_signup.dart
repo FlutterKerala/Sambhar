@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sambharapp/models/consumer_model.dart';
+import 'package:sambharapp/screens/consumer_dashboard.dart';
 import 'package:sambharapp/widgets/signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -293,7 +294,7 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
           child: Container(
             padding: EdgeInsets.all(15.0),
             child: Text(
-              'Sign up as a Seller',
+              'Sign up as a Consumer',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -320,7 +321,8 @@ class _ConsumerSignUpState extends State<ConsumerSignUp> {
         _addressController.clear();
       });
       SharedPreferences preferences = await SharedPreferences.getInstance();
-      preferences.setString("type", "consumer");
+      preferences.setString("type", "Consumer");
+      Navigator.of(context).pushReplacementNamed(ConsumerDashboard.routeName);
     } else
       debugPrint("Not success");
     scheduleRebuild();
