@@ -19,6 +19,7 @@ class _ProductCategoryState extends State<ProductCategory> {
         automaticallyImplyLeading: true,
         backgroundColor: Theme.of(context).accentColor,
       ),
+
       body: StreamBuilder(
         stream: Firestore.instance
             .collection('Seller')
