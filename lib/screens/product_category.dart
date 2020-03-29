@@ -17,12 +17,7 @@ class _ProductCategoryState extends State<ProductCategory> {
       appBar: AppBar(
         title: Text(widget.category),
       ),
-<<<<<<< HEAD
-      body:// StreamBuilder(
-        // stream: Firestore.instance.collection('')),
-        Center(),
-      
-=======
+
       body: StreamBuilder(
         stream: Firestore.instance
             .collection('Seller')
@@ -41,7 +36,6 @@ class _ProductCategoryState extends State<ProductCategory> {
             );
         },
       ),
->>>>>>> adbf982d53fdf0d14d6162189c350684f8e7887a
     );
   }
 }

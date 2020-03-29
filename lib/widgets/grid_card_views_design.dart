@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sambharapp/models/category_model.dart';
 
 class GridCardsView extends StatelessWidget {
   GridCardsView({

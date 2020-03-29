@@ -19,28 +19,6 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-<<<<<<< HEAD
-        theme: mainThemes(),
-        routes: {
-          TemporaryScreen.routeName: (ctx) => TemporaryScreen(),
-          SellerDashboard.routeName: (ctx) => SellerDashboard(),
-        },
-        home: SellerDashboard(),
-        // Consumer<FirebaseLogin>(
-        //  builder: (context, firebaseprovider, child) {
-        // Checks If User Is Already Logged In Or Not
-        //    if (firebaseprovider.loginStatus ==
-        //        LoginStatus
-        //            .LoggedIn) if (firebaseprovider.userType == "consumer")
-        //      return TemporaryScreen(); //If User Is Consumer Push To Consumer Dash
-        //    else
-        //       return TemporaryScreen(); // Else Push To Seller Page
-        //     else
-        //       return LoginSelector(); //Else To Login Selector Page
-        ///   },
-        //),
-      ),
-=======
           theme: mainThemes(),
           routes: {
             ConsumerDashboard.routeName: (ctx) => ConsumerDashboard(),
@@ -58,7 +36,6 @@ class MyApp extends StatelessWidget {
                 return LoginSelector(); //Else To Login Selector Page
             },
           )),
->>>>>>> adbf982d53fdf0d14d6162189c350684f8e7887a
     );
   }
 }
