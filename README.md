@@ -8,6 +8,8 @@ P2P marketplace for groceries during the Corona lockdown.
 
 Sambhar is designed as a platform to meet the demand and supply between consumers and sellers by bringing them to a common platform.
 
+![Consumer Dashboard](consumer-dashboard.png)
+
 
 The app does this by creating an easy to use dashboard where users can order items from the vendors around them.
 
@@ -21,7 +23,7 @@ At this first phase, we haven't implemented the delivery service and has built t
 
 # Design
 
-Here is the [[Figma document](https://www.figma.com/file/FkwYAYqNheFt1P2tv3PvSK/Sambhar-Design?node-id=0%3A1)] where we conducted all of our designs.
+Here is the [Figma document](https://www.figma.com/file/FkwYAYqNheFt1P2tv3PvSK/Sambhar-Design?node-id=0%3A1) where we conducted all of our designs.
 
 ## Visual language
 

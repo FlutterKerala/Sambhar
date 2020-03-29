@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sambharapp/models/cart_item.dart';
-import 'package:sambharapp/provider/cart_provider.dart';
 import 'package:sambharapp/widgets/ItemListTile.dart';
 
-class ConsumerCart extends StatelessWidget {
+class CartContent extends StatelessWidget {
+  List<CartItem> items;
+  String price;
+  CartContent(this.items, this.price);
   @override
   Widget build(BuildContext context) {
-    final _cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Column(
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text("Cart"),
-            Text(_cartProvider.cartItems.length.toString() + ' items'),
+            Text(items.length.toString() + ' items'),
           ],
         ),
         automaticallyImplyLeading: true,
@@ -25,8 +26,8 @@ class ConsumerCart extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text("Full amount"),
-              Text('${_cartProvider.price}'),
-              _cartItemList(_cartProvider.cartItems),
+              Text('${price.toString()}'),
+              _cartItemList(items),
             ],
           ),
         ),
