@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sambharapp/provider/firebase_consumer_login.dart';
-import 'package:sambharapp/provider/provider_category_provider.dart';
 import 'package:sambharapp/screens/consumer_dashboard.dart';
 import 'package:sambharapp/screens/login_selector.dart';
 import 'package:sambharapp/states/LoginStatus.dart';
@@ -16,9 +15,6 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => FirebaseLogin(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => ProductCategoryProvider(),
         ),
       ],
       child: MaterialApp(
