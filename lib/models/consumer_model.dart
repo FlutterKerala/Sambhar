@@ -10,7 +10,7 @@ class ConsumerModel {
         gender = json['gender'],
         address = json['address'],
         pincode = json['pincode'],
-        dob = json['dob'],
+        dob = json['dob'].toDate(),
         type = "consumer";
 
   Map<String, dynamic> toJson() => {

@@ -59,7 +59,11 @@ flutter:
     - assets/images/icons.png
     - assets/images/sambhar-bg.png
     - assets/images/shop.png
+<<<<<<< HEAD
     - assets/images/appbar.png
+=======
+    - assets/images/app-bg-notext.png
+>>>>>>> adbf982d53fdf0d14d6162189c350684f8e7887a
 
   #  - images/a_dot_ham.jpeg
 

@@ -21,7 +21,6 @@ class _AddShopState extends State<AddShop> {
       fontSize: 25,
       fontWeight: FontWeight.w700);
 
-  SellerModel model;
   double screenWidth;
 
   Firestore _reference;
@@ -56,7 +55,6 @@ class _AddShopState extends State<AddShop> {
   void initState() {
     super.initState();
     _reference = Firestore.instance;
-    model = SellerModel();
     _shopnameController = TextEditingController();
     _shopLocController = TextEditingController();
     _pincodeController = TextEditingController();
@@ -81,7 +79,7 @@ class _AddShopState extends State<AddShop> {
             return null;
         },
         cursorColor: Theme.of(context).accentColor,
-        onSaved: (value) => model.shopname = value,
+        onSaved: (value) => widget.sellerModel.shopname = value,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: 'Shop Name',
@@ -112,7 +110,7 @@ class _AddShopState extends State<AddShop> {
           else
             return null;
         },
-        onSaved: (value) => model.shoploc = value,
+        onSaved: (value) => widget.sellerModel.shoploc = value,
         keyboardType: TextInputType.phone,
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -143,7 +141,7 @@ class _AddShopState extends State<AddShop> {
           else
             return null;
         },
-        onSaved: (value) => model.shoppin = value,
+        onSaved: (value) => widget.sellerModel.shopPincode = value,
         keyboardType: TextInputType.number,
         cursorColor: Theme.of(context).accentColor,
         decoration: InputDecoration(
@@ -176,7 +174,7 @@ class _AddShopState extends State<AddShop> {
           else
             return null;
         },
-        onSaved: (value) => model.gstid = value,
+        onSaved: (value) => widget.sellerModel.gstid = value,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: 'GST ID (Optional)',
@@ -225,22 +223,17 @@ class _AddShopState extends State<AddShop> {
         content: Text("Registering .. Please wait"),
       ));
 
-      model.dob = widget.sellerModel.dob;
-      model.name = widget.sellerModel.name;
-      model.address = widget.sellerModel.address;
-      model.gender = widget.sellerModel.gender;
-      model.phone = widget.sellerModel.phone;
-      model.pincode = widget.sellerModel.pincode;
-
-      await _reference.collection('Seller').document().setData(model.toJson());
+      
+      // await _reference.collection('Seller').document().setData(model.toJson());
       SharedPreferences preferences = await SharedPreferences.getInstance();
-      preferences.setString("type", "seller");
+      preferences.setString("type", "Seller");
       await _reference
           .collection('Seller')
-          .document(widget.sellerModel.pincode)
-          .collection(widget.sellerModel.gstid.toString())
+          .document(widget.sellerModel.shopPincode)
+          .collection("Sellers")
           .document()
-          .setData({'We have': 'to set Categories'}).then(
+          .setData(widget.sellerModel.toJson())
+          .then(
         (value) {
           _scaffoldKey.currentState.hideCurrentSnackBar();
           Navigator.push(

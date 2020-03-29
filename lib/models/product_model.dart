@@ -1,6 +1,6 @@
 class ProductModel {
   String name, category, imageUrl;
-  double price;
+  int price;
   bool availability;
 
   ProductModel.fromJson(Map<String, dynamic> json)
@@ -8,7 +8,7 @@ class ProductModel {
         category = json['category'],
         imageUrl = json['imageUrl'],
         price = json['price'],
-        availability = json['price'];
+        availability = json['availability'];
 
   Map<String, dynamic> toJson() => {
         'name': name,

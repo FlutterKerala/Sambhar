@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class SellerModel {
   String name,
       phone,
@@ -6,8 +8,8 @@ class SellerModel {
       shopname,
       shoploc,
       gstid,
-      shoppin,
-      pincode,
+      homePincode,
+      shopPincode,
       type;
   DateTime dob;
 
@@ -18,12 +20,12 @@ class SellerModel {
         phone = json['phone'],
         gender = json['gender'],
         address = json['address'],
-        pincode = json['pincode'],
-        dob = json['dob'],
+        homePincode = json['homePincode'],
+        shopPincode = json['shopPincode'],
+        dob = json['dob'].toDate(),
         shopname = json['shopname'],
         gstid = json['gstid'],
         shoploc = json["shoplocation"],
-        shoppin = json["shoppin"],
         type = "seller";
 
   Map<String, dynamic> toJson() => {
@@ -31,11 +33,11 @@ class SellerModel {
         'phone': phone,
         'gender': gender,
         'address': address,
-        'pincode': pincode,
+        'homePincode': homePincode,
+        'shopPincode': shopPincode,
         'dob': dob,
         'shopname': shopname,
         'gstid': gstid,
-        'shoppin': shoppin,
         'shoplocation': shoploc,
         'type': "seller"
       };
