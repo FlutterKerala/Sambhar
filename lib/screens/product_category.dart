@@ -16,6 +16,8 @@ class _ProductCategoryState extends State<ProductCategory> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.category),
+        automaticallyImplyLeading: true,
+        backgroundColor: Theme.of(context).accentColor,
       ),
       body: StreamBuilder(
         stream: Firestore.instance
@@ -25,6 +27,7 @@ class _ProductCategoryState extends State<ProductCategory> {
             .getDocuments()
             .asStream(),
         builder: (context, snapshot) {
+          //Have to display list with the datas
           if (!snapshot.hasData)
             return Center(
               child: Text("No data"),
