@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
           theme: mainThemes(),
           routes: {
             ConsumerDashboard.routeName: (ctx) => ConsumerDashboard(),
