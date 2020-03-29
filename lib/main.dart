@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
               // Checks If User Is Already Logged In Or Not
               if (firebaseprovider.loginStatus ==
                   LoginStatus
-                      .LoggedIn) if (firebaseprovider.userType == "consumer")
+                      .LoggedIn) if (firebaseprovider.userType == "Consumer")
                 return ConsumerDashboard(); //If User Is Consumer Push To Consumer Dash
               else
                 return ConsumerDashboard(); // Else Push To Seller Page
