@@ -12,9 +12,10 @@ class ProductCategory extends StatelessWidget {
       appBar: AppBar(
         title: Text(_category),
       ),
-      body: StreamBuilder(
-        // stream: Firestore.instance.collection(''),
-      ),
+      body:// StreamBuilder(
+        // stream: Firestore.instance.collection('')),
+        Center(),
+      
     );
   }
 }
