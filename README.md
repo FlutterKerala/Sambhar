@@ -4,7 +4,12 @@
 
 P2P marketplace for groceries during the Corona lockdown.
 
-# Intro
+
+## Context
+
+Corona Virus Lockdown was announced in India on 24th March for 21 days. This has put the entire nation isolated in their homes. They find it hard to get outside of their houses to pick up their daily groceries.
+
+## Solution
 
 Sambhar is designed as a platform to meet the demand and supply between consumers and sellers by bringing them to a common platform.
 
