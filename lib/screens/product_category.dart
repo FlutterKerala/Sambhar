@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ProductCategory extends StatefulWidget {
-  String _category;
+  String pincode, category;
 
-  ProductCategory(this._category);
+  ProductCategory({this.pincode, this.category});
 
   @override
   _ProductCategoryState createState() => _ProductCategoryState();
@@ -15,12 +15,12 @@ class _ProductCategoryState extends State<ProductCategory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget._category),
+        title: Text(widget.category),
       ),
       body: StreamBuilder(
         stream: Firestore.instance
             .collection('Seller')
-            .document(widget._category)
+            .document(widget.pincode)
             .collection('Sellers')
             .getDocuments()
             .asStream(),
