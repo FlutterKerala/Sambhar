@@ -5,8 +5,10 @@ import 'package:sambharapp/widgets/sub_txt_widgets.dart';
 
 class ListViewBuilderProducts extends StatelessWidget {
   final Stream<QuerySnapshot> stremData;
+  final String docId;
   ListViewBuilderProducts({
     @required this.stremData,
+    @required this.docId,
   });
 
   @override
@@ -51,8 +53,9 @@ class ListViewBuilderProducts extends StatelessWidget {
       DocumentSnapshot document, BuildContext context) {
     return GestureDetector(
       onTap: () {
+        List _tempData = [document, docId];
         Navigator.of(context)
-            .pushNamed(EditIteams.routeName, arguments: document);
+            .pushNamed(EditIteams.routeName, arguments: _tempData);
       },
       child: Container(
         padding: EdgeInsets.all(10),
