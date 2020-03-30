@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -61,6 +61,13 @@ flutter:
     - assets/images/shop.png
     - assets/images/appbar.png
     - assets/images/app-bg-notext.png
+    - assets/images/grains.png
+    - assets/images/egg.png
+    - assets/images/fruits.png
+    - assets/images/veggies.png
+    - assets/images/bread.png
+    - assets/images/dairy.png
+    - assets/images/shopicon.png
 
 
   #  - images/a_dot_ham.jpeg

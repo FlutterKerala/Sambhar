@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sambharapp/provider/firebase_consumer_login.dart';
+import 'package:sambharapp/screens/consumer_cart/consumer_cart.dart';
 
 class ConsumerDashboard extends StatelessWidget {
   static const routeName = '/ConsumerDashboard';
@@ -37,71 +38,25 @@ class ConsumerDashboard extends StatelessWidget {
                     ),
                     GridView.count(
                       crossAxisCount: 3,
-                      childAspectRatio: 1.0,
+                      childAspectRatio: .85,
                       padding: const EdgeInsets.all(20.0),
-                      mainAxisSpacing: 4.0,
+                      mainAxisSpacing: 20.0,
                       crossAxisSpacing: 10.0,
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       children: <Widget>[
-                        Container(
-                            height: 30,
-                            width: 30,
-                            color: Colors.transparent,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              elevation: 10,
-                              child: IconButton(
-                                  icon: Icon(Icons.local_pizza),
-                                  onPressed: null),
-                            )),
-                        Container(
-                            child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          elevation: 10,
-                          child: IconButton(
-                              icon: Icon(Icons.local_pizza), onPressed: null),
-                        )),
-                        Container(
-                            child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          elevation: 10,
-                          child: IconButton(
-                              icon: Icon(Icons.local_pizza), onPressed: null),
-                        )),
-                        Container(
-                            child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          elevation: 10,
-                          child: IconButton(
-                              icon: Icon(Icons.local_pizza), onPressed: null),
-                        )),
-                        Container(
-                            child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          elevation: 10,
-                          child: IconButton(
-                              icon: Icon(Icons.local_pizza), onPressed: null),
-                        )),
-                        Container(
-                            child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          elevation: 10,
-                          child: IconButton(
-                              icon: Icon(Icons.local_pizza), onPressed: null),
-                        ))
+                        catGrid(Color(0xff5EBF46), "assets/images/veggies.png",
+                            "Vegetables", context),
+                        catGrid(Color(0xffE0D03D), "assets/images/egg.png",
+                            "Poultry", context),
+                        catGrid(Color(0xffB1523D), "assets/images/grains.png",
+                            "Grains & Pulses", context),
+                        catGrid(Color(0xff8D4EBD), "assets/images/fruits.png",
+                            "Fruits", context),
+                        catGrid(Color(0xff46BFB0), "assets/images/dairy.png",
+                            "Dairy", context),
+                        catGrid(Color(0xff4693BF), "assets/images/bread.png",
+                            "Breads", context),
                       ],
                     ),
                     SizedBox(
@@ -110,6 +65,33 @@ class ConsumerDashboard extends StatelessWidget {
                     Text(
                       "Shops Nearby",
                       style: headertextStyle,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        children: <Widget>[
+                          Card(
+                            child: ListTile(
+                              contentPadding: EdgeInsets.all(15),
+                              title: Text("Damu Chettans Kada"),
+                              subtitle: Text("1 Kms Away"),
+                              leading:
+                                  Image.asset("assets/images/shopicon.png"),
+                            ),
+                          ),
+                          Card(
+                            child: ListTile(
+                              contentPadding: EdgeInsets.all(15),
+                              title: Text("Big Market Stores"),
+                              subtitle: Text("4.5 Kms Away"),
+                              leading:
+                                  Image.asset("assets/images/shopicon.png"),
+                            ),
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -119,6 +101,40 @@ class ConsumerDashboard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Container catGrid(Color cardColor, String icon, String info, context) {
+    return Container(
+        color: Colors.transparent,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Card(
+              color: cardColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              elevation: 10,
+              child: Center(
+                  child: IconButton(
+                      icon: Image.asset(
+                        icon,
+                        fit: BoxFit.contain,
+                        height: 60,
+                        width: 60,
+                      ),
+                      iconSize: 80,
+                      onPressed: null)),
+            ),
+            Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Text(
+                  info,
+                  style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.w800),
+                ))
+          ],
+        ));
   }
 
   String getGreeting() {
@@ -140,6 +156,17 @@ class ConsumerDashboard extends StatelessWidget {
           onPressed: () {
             _scaffoldKey.currentState.openDrawer();
           }),
+      actions: <Widget>[
+        IconButton(
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => ConsumerCart()));
+            })
+      ],
       expandedHeight: 150.0,
       floating: true,
       pinned: true,
