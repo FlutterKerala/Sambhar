@@ -5,8 +5,10 @@ import 'package:sambharapp/widgets/sub_txt_widgets.dart';
 
 class ListViewBuilderProducts extends StatelessWidget {
   final Stream<QuerySnapshot> stremData;
+  final String docId;
   ListViewBuilderProducts({
     @required this.stremData,
+    @required this.docId,
   });
 
   @override
@@ -51,7 +53,9 @@ class ListViewBuilderProducts extends StatelessWidget {
       DocumentSnapshot document, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(EditIteams.routeName);
+        List _tempData = [document, docId];
+        Navigator.of(context)
+            .pushNamed(EditIteams.routeName, arguments: _tempData);
       },
       child: Container(
         padding: EdgeInsets.all(10),
@@ -67,7 +71,10 @@ class ListViewBuilderProducts extends StatelessWidget {
                   offset: Offset(0, 2.1))
             ]),
         child: Row(
-          children: <Widget>[iconReplacment(document.data['imageUrl']), dataInsideListVeiw(document)],
+          children: <Widget>[
+            iconReplacment(document.data['imageUrl']),
+            dataInsideListVeiw(document)
+          ],
         ),
       ),
     );
@@ -92,9 +99,12 @@ class ListViewBuilderProducts extends StatelessWidget {
 
   Container iconReplacment(String imgUrl) {
     return Container(
-      margin: EdgeInsets.only(right: 30),
-      height: 60,
-      width: 60,
-      child: Image.network(imgUrl, fit: BoxFit.fill,));
+        margin: EdgeInsets.only(right: 30),
+        height: 60,
+        width: 60,
+        child: Image.network(
+          imgUrl,
+          fit: BoxFit.fill,
+        ));
   }
 }

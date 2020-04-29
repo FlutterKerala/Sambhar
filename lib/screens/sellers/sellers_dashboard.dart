@@ -65,8 +65,11 @@ class _SellerDashboardState extends State<SellerDashboard> {
                           stremData: Firestore.instance
                               .collection('Seller')
                               .document(_docId)
-                              .collection('products')
-                              .snapshots()),
+                              .collection('products').
+                              where('availability' ,isEqualTo: true)
+                              .snapshots(),
+                              docId: _docId
+                              ),
                       SizedBox(
                         height: 50,
                       ),

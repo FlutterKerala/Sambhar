@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sambharapp/provider/cart_provider.dart';
 import 'package:sambharapp/provider/firebase_consumer_login.dart';
+import 'package:sambharapp/provider/firebase_data_queries.dart';
 import 'package:sambharapp/screens/consumer_dashboard.dart';
 import 'package:sambharapp/screens/login_selector.dart';
 import 'package:sambharapp/screens/sellers/edit_items.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => FirebaseDataQuieriesSellers(),
         ),
       ],
       child: MaterialApp(
